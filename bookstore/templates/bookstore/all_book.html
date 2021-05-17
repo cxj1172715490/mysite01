@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看所有书籍</title>
+</head>
+
+<form action="/bookstore/add_book/" method="get">
+<p>
+    所有书籍信息 &nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="submit" value="添加书籍">
+</p>
+</form>
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>pub</th>
+        <th>price</th>
+        <th>market_price</th>
+        <th>op</th>
+    </tr>
+
+    {% for book in all_book %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.pub }}</td>
+            <td>{{ book.price }}</td>
+            <td>{{ book.market_price }}</td>
+            <td>
+                <a href="/bookstore/update_book/{{ book.id }}">更新</a>
+                <a href="/bookstore/delete_book?book_id={{ book.id }}">删除</a>
+            </td>
+
+        </tr>
+    {% endfor %}
+
+</table>
+
+<form action="/bookstore/page_view/" method="get">
+    <p>
+        <input type="submit" value="分页显示">
+    </p>
+</form>
+
+</body>
+</html>

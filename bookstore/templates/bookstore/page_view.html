@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页</title>
+</head>
+<body>
+
+
+<a href="/bookstore/all_book/">显示全部</a>
+<form action="/bookstore/add_book/" method="get">
+    <p>
+        <input type="submit" value="添加书籍">
+    </p>
+</form>
+
+
+{% for p in c_page %}
+    <p>
+        {{ p }}
+    </p>
+{% endfor %}
+
+{% if c_page.has_previous %}
+    <a href="/bookstore/page_view/?page={{ c_page.previous_page_number }}">上一页</a>
+{% else %}
+    上一页
+{% endif %}
+
+{% for p_num in paginator.page_range %}
+    {% if p_num == c_page.number %}
+        {{ p_num }}
+    {% else %}
+        <a href="/bookstore/page_view/?page={{ p_num }}">{{ p_num }}</a>
+    {% endif %}
+{% endfor %}
+
+
+{% if c_page.has_next %}
+    <a href="/bookstore/page_view/?page={{ c_page.next_page_number }}">下一页</a>
+{% else %}
+    下一页
+{% endif %}
+
+</body>
+</html>
